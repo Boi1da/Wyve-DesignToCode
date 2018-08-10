@@ -16,7 +16,7 @@ class PageCell : UICollectionViewCell {
             guard let unWrappedPage = page else {return }
             onboardingImageView1.image = UIImage(named: page!.imageName)
             
-            let attributedText = NSMutableAttributedString(string: unWrappedPage.titleText, attributes: [NSAttributedStringKey.font: UIFont.init(name: "Avenir-Heavy", size: 60), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)])
+            let attributedText = NSMutableAttributedString(string: unWrappedPage.titleText, attributes: [NSAttributedStringKey.font: UIFont.init(name: "AvenirNext-Bold", size: 60), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)])
             
             attributedText.append(NSAttributedString(string: "\n\n\(unWrappedPage.bodyText)", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Avenir-Heavy", size: 24), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)]))
             
@@ -46,9 +46,37 @@ class PageCell : UICollectionViewCell {
         return bigWordLabel
     }()
     
+    private let prevButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Prev", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        button.setTitleColor(UIColor.gray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let pageControlUI : UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = 4
+        pageControl.currentPageIndicatorTintColor = .orange
+        pageControl.pageIndicatorTintColor = .gray
+        return pageControl
+    }()
+    
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Next", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        button.setTitleColor(UIColor.orange, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpLayout()
+        setUpBottomButtons()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,27 +89,55 @@ class PageCell : UICollectionViewCell {
         addSubview(topImageViewContainer)
         
         topImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
-        topImageViewContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        topImageViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        topImageViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            topImageViewContainer.topAnchor.constraint(equalTo: topAnchor),
+            topImageViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor),
+            topImageViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
         
         topImageViewContainer.addSubview(onboardingImageView1)
         onboardingImageView1.contentMode = .scaleAspectFill
-        onboardingImageView1.centerXAnchor.constraint(equalTo: topImageViewContainer.centerXAnchor).isActive = true
-        onboardingImageView1.topAnchor.constraint(equalTo: topImageViewContainer.topAnchor, constant: 0).isActive = true
-        onboardingImageView1.widthAnchor.constraint(equalTo: topImageViewContainer.widthAnchor).isActive = true
-        onboardingImageView1.heightAnchor.constraint(equalToConstant: 397).isActive = true
         
+        //Layout for the onboardingImage
+        NSLayoutConstraint.activate([
+            onboardingImageView1.centerXAnchor.constraint(equalTo: topImageViewContainer.centerXAnchor),
+            onboardingImageView1.topAnchor.constraint(equalTo: topImageViewContainer.topAnchor, constant: 0),
+            onboardingImageView1.widthAnchor.constraint(equalTo: topImageViewContainer.widthAnchor),
+            onboardingImageView1.heightAnchor.constraint(equalToConstant: 397)
+        ])
         
+        //ImageView container should be half the height of the full app screen.
         topImageViewContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         
         topImageViewContainer.addSubview(descriptionTextView)
         
         //Layout for the descriptionTextView
-        descriptionTextView.topAnchor.constraint(equalTo: onboardingImageView1.bottomAnchor, constant: 0).isActive = true
-        descriptionTextView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        descriptionTextView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            descriptionTextView.topAnchor.constraint(equalTo: onboardingImageView1.bottomAnchor, constant: 0),
+            descriptionTextView.leftAnchor.constraint(equalTo: leftAnchor),
+            descriptionTextView.rightAnchor.constraint(equalTo: rightAnchor),
+            descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
         descriptionTextView.textAlignment = .center
+    }
+    
+    
+    
+    func setUpBottomButtons() {
+        
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [prevButton, pageControlUI, nextButton])
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.distribution = .fillEqually
+        
+        addSubview(bottomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+            ])
     }
 }

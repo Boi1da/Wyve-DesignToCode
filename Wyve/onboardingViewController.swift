@@ -10,7 +10,7 @@ import UIKit
 
 class onboardingViewController : UIViewController {
     
-    let onboardingImageView1 : UIImageView = {
+    let onboardingImageView : UIImageView = {
         var image1 = UIImageView(image: #imageLiteral(resourceName: "White_Heels"))
         image1.translatesAutoresizingMaskIntoConstraints = false
         return image1
@@ -20,9 +20,9 @@ class onboardingViewController : UIViewController {
         let bigWordLabel = UITextView()
         bigWordLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let attributedText = NSMutableAttributedString(string: "EXPRESS", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Avenir-Heavy", size: 60), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)])
+        let attributedText = NSMutableAttributedString(string: "EXPRESS", attributes: [NSAttributedStringKey.font: UIFont.init(name: "AvenirNext-Heavy", size: 72), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)])
         
-        attributedText.append(NSAttributedString(string: "\n\nEager?\nSo are we, all our products arrive to you’re door the next day.", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Avenir-Heavy", size: 24), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)]))
+        attributedText.append(NSAttributedString(string: "\n\nEager?\nSo are we, all our products arrive to you’re door the next day.", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Avenir-Medium", size: 24), NSAttributedStringKey.foregroundColor: UIColor(red:0.27, green:0.25, blue:0.25, alpha:1.00)]))
         
         bigWordLabel.attributedText = attributedText
         bigWordLabel.isEditable = false
@@ -62,7 +62,7 @@ class onboardingViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(onboardingImageView1)
+        view.addSubview(onboardingImageView)
         view.addSubview(descriptionTextView)
         
         setUpLayout()
@@ -87,17 +87,23 @@ class onboardingViewController : UIViewController {
     
     func setUpLayout() {
         
-        onboardingImageView1.contentMode = .scaleAspectFill
-        onboardingImageView1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        onboardingImageView1.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        onboardingImageView1.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        onboardingImageView1.heightAnchor.constraint(equalToConstant: 397).isActive = true
+        //Layout for the onBoardingImageView
+        
+        onboardingImageView.contentMode = .scaleAspectFill
+        onboardingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        onboardingImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        onboardingImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        onboardingImageView.heightAnchor.constraint(equalToConstant: 397).isActive = true
         
         //Layout for the descriptionTextView
-        descriptionTextView.topAnchor.constraint(equalTo: onboardingImageView1.bottomAnchor, constant: 20).isActive = true
-        descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            descriptionTextView.topAnchor.constraint(equalTo: onboardingImageView.bottomAnchor, constant: 20),
+            descriptionTextView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            descriptionTextView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         descriptionTextView.textAlignment = .center
     }
 }

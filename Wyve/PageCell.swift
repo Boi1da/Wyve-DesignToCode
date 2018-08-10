@@ -45,38 +45,12 @@ class PageCell : UICollectionViewCell {
         
         return bigWordLabel
     }()
+
     
-    private let prevButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Prev", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
-        button.setTitleColor(UIColor.gray, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private let pageControlUI : UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = 4
-        pageControl.currentPageIndicatorTintColor = .orange
-        pageControl.pageIndicatorTintColor = .gray
-        return pageControl
-    }()
-    
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
-        button.setTitleColor(UIColor.orange, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpLayout()
-        setUpBottomButtons()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -124,20 +98,5 @@ class PageCell : UICollectionViewCell {
     }
     
     
-    
-    func setUpBottomButtons() {
-        
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [prevButton, pageControlUI, nextButton])
-        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomControlsStackView.distribution = .fillEqually
-        
-        addSubview(bottomControlsStackView)
-        
-        NSLayoutConstraint.activate([
-            bottomControlsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            bottomControlsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            bottomControlsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
-            ])
-    }
+ 
 }

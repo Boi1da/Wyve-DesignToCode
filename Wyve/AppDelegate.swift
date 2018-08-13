@@ -16,20 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         UIApplication.shared.statusBarStyle = .lightContent
         
         window = UIWindow()
-        window?.makeKeyAndVisible()
-        
-//        let randomVC = UIViewController()
-//        randomVC.view.backgroundColor = .purple
-        
+    
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let swipingController = SwipingController(collectionViewLayout: layout)
         
-        window?.rootViewController = swipingController
+        let navigationController = UINavigationController(rootViewController: swipingController)
+        
+        navigationController.navigationBar.isTranslucent = false
+    
+        
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
 

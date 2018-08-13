@@ -13,7 +13,8 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     let pages = [
         Page(imageName : "White_Heels", titleText : "Express.", bodyText : "Eager? So are we, all our products arrive to you’re door the next day."),
         Page(imageName: "Gate_Keeper", titleText: "Define.", bodyText: "Expressive clothing lets you define who you are to the world.  "),
-        Page(imageName: "Ice_Cream", titleText: "Realistic.", bodyText: "Fashion made to be worn by you’re average Joe, meaning our prices remain affordable.")
+        Page(imageName: "Ice_Cream", titleText: "Realistic.", bodyText: "Fashion made to be worn by you’re average Joe, meaning our prices remain affordable."),
+        Page(imageName: "Blue_Shirt", titleText: "Get Started!", bodyText: "Press the next button to sign in and start shopping with Wyve !")
     ]
     
     
@@ -36,7 +37,9 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
     
     private let nextButton: UIButton = {
         let button = UIButton(type: .system)
+        
         button.setTitle("Next", for: .normal)
+        
         button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
         button.setTitleColor(UIColor.orange, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +51,16 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let nextIndex = min(pageControlUI.currentPage + 1, pages.count - 1)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControlUI.currentPage = nextIndex
+        
+        if (pageControlUI.currentPage == pages.count - 1) {
+            
+            print("not working!")
+            // move to next VC if we are on last page
+                let nextVC = HomeScreenViewController()
+                print(self.navigationController)
+                self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+            
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
@@ -65,6 +78,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         
         setUpBottomButtons()
+        self.navigationController?.isNavigationBarHidden = true
         
         collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.isPagingEnabled = true

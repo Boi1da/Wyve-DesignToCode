@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "curly_Hair_Yellow.png",
+      "filename" : "BlueShirt.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "curly_Hair_Yellow@2x.png",
+      "filename" : "BlueShirt@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "curly_Hair_Yellow@3x.png",
+      "filename" : "BlueShirt@3x.png",
       "scale" : "3x"
     }
   ],

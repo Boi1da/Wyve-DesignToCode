@@ -52,11 +52,10 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControlUI.currentPage = nextIndex
         
+        print(nextIndex)
         if (pageControlUI.currentPage == pages.count - 1) {
-            
-            print("not working!")
             // move to next VC if we are on last page
-                let nextVC = HomeScreenViewController()
+                let nextVC = SignInViewController()
                 print(self.navigationController)
                 self.navigationController?.pushViewController(nextVC, animated: true)
         }

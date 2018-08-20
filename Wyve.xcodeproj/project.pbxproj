@@ -15,6 +15,7 @@
 		D297BB642118B21300D50A9C /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D297BB632118B21300D50A9C /* SwipingController.swift */; };
 		D297BB662118CF5500D50A9C /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D297BB652118CF5500D50A9C /* PageCell.swift */; };
 		D2AD5717211914DC0075FE48 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AD5716211914DC0075FE48 /* Page.swift */; };
+		D2AD945C21218C6B00DC2C1D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AD945B21218C6B00DC2C1D /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D297BB632118B21300D50A9C /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		D297BB652118CF5500D50A9C /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		D2AD5716211914DC0075FE48 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		D2AD945B21218C6B00DC2C1D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				D273519621209C8E00D8C16C /* OnboardingRelated */,
 				D2791E652115F4B600E6034A /* AppDelegate.swift */,
 				D273519721209E3800D8C16C /* HomeScreenViewController.swift */,
+				D2AD945B21218C6B00DC2C1D /* SignInViewController.swift */,
 				D2791E692115F4B600E6034A /* Main.storyboard */,
 				D2791E6C2115F4B800E6034A /* Assets.xcassets */,
 				D2791E6E2115F4B800E6034A /* LaunchScreen.storyboard */,
@@ -154,6 +157,7 @@
 			files = (
 				D297BB662118CF5500D50A9C /* PageCell.swift in Sources */,
 				D2AD5717211914DC0075FE48 /* Page.swift in Sources */,
+				D2AD945C21218C6B00DC2C1D /* SignInViewController.swift in Sources */,
 				D2791E662115F4B600E6034A /* AppDelegate.swift in Sources */,
 				D297BB642118B21300D50A9C /* SwipingController.swift in Sources */,
 				D273519821209E3800D8C16C /* HomeScreenViewController.swift in Sources */,
